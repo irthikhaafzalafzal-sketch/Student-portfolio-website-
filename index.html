@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #d9e5c9;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Navigation */
+nav {
+    background: #dfd872;
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav h2 {
+    color: #f0aadc;
+}
+
+nav a {
+    color: rgb(83, 20, 20);
+    text-decoration: none;
+    margin: 8px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #ebfad6;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 350px;
+    background: linear-gradient(135deg, #d6efac, #e0f26e);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.hero span {
+    color: #601a53;
+}
+
+.hero p {
+    margin: 10px 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #d6f0cd;
+    color: #701045;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn:hover {
+    background: rgb(197, 215, 123);
+}
+
+/* Common Sections */
+section {
+    padding: 45px 8%;
+}
+
+section h2 {
+    text-align: center;
+    color: #9fde64;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #00000012;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #c2cb0e;
+    margin-bottom: 8px;
+}
+
+/* Skills */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.skill {
+    background: #dbeafe;
+    color: #75af1e;
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Projects */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.filters {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.filters button {
+    padding: 9px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #dbeafe;
+    color: #470e29;
+    cursor: pointer;
+}
+
+.filters button:hover,
+.filters button.active {
+    background: #4d022d;
+    color: white;
+}
+
+.project {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px #00000020;
+}
+
+.project a {
+    color: #2563eb;
+}
+
+/* Contact Form */
+form {
+    max-width: 550px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #00000012;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+#message {
+    text-align: center;
+    margin-top: 12px;
+    color: green;
+}
+
+/* Footer */
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+/* Animation */
+section, .hero {
+    animation: appear 0.8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav div {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 6px;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    section {
+        padding: 30px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <h2>My Portfolio</h2>
+
+    <div>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<header class="hero">
+    <h1>Hello, I'm <span>Aameera irthikha</span></h1>
+
+    <p>Student | Web Developer | Technology Enthusiast</p>
+
+    <a href="#projects" class="btn">View My Projects</a>
+
+    <button class="btn" onclick="downloadResume()">
+        Download Resume
+    </button>
+</header>
+
+<!-- About Section -->
+<section id="about">
+    <h2>About Me</h2>
+
+    <div class="card">
+        <p>
+            Hello! I am a college student interested in web development
+            and technology. I enjoy learning new programming languages,
+            developing websites, and solving problems. My goal is to
+            improve my technical skills and build useful applications.
+        </p>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education">
+    <h2>Education</h2>
+
+    <div class="card">
+        <h3>Bachelor's Degree</h3>
+        <p>College: MMES College</p>
+        <p>Department: Computer Science</p>
+        <p>Year: 2024 - 2027</p>
+    </div>
+
+    <div class="card">
+        <h3>Higher Secondary Education</h3>
+        <p>School: GIT Higher Secondary School</p>
+        <p>Year: 2022 - 2024</p>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2>My Skills</h2>
+
+    <div class="skills">
+        <span class="skill">HTML</span>
+        <span class="skill">CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">C++</span>
+        <span class="skill">Java</span>
+        <span class="skill">Python</span>
+        <span class="skill">Communication</span>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2>My Projects</h2>
+
+    <div class="filters">
+        <button class="active" onclick="filterProjects('all', this)">
+            All
+        </button>
+
+        <button onclick="filterProjects('web', this)">
+            Web Development
+        </button>
+
+        <button onclick="filterProjects('javascript', this)">
+            JavaScript
+        </button>
+
+        <button onclick="filterProjects('college', this)">
+            College
+        </button>
+    </div>
+
+    <div class="project-container">
+
+        <div class="card project" data-category="college">
+            <h3>College Transport Portal</h3>
+            <p>
+                A website that provides college bus routes,
+                timings, and transportation information.
+            </p>
+            <p><b>Technology:</b> HTML, CSS, JavaScript</p>
+            <a href="#contact">Project Enquiry</a>
+        </div>
+
+        <div class="card project" data-category="javascript">
+            <h3>Online Quiz Application</h3>
+            <p>
+                An interactive quiz application that allows
+                users to answer questions and view their scores.
+            </p>
+            <p><b>Technology:</b> HTML, CSS, JavaScript</p>
+            <a href="#contact">Project Enquiry</a>
+        </div>
+
+        <div class="card project" data-category="web">
+            <h3>Student Portfolio</h3>
+            <p>
+                A personal website that displays student
+                information, qualifications, skills, and projects.
+            </p>
+            <p><b>Technology:</b> HTML, CSS, JavaScript</p>
+            <a href="#contact">Project Enquiry</a>
+        </div>
+
+        <div class="card project" data-category="college">
+            <h3>Student Attendance Tracker</h3>
+            <p>
+                A sample application concept for recording
+                and viewing student attendance.
+            </p>
+            <p><b>Technology:</b> HTML, CSS, JavaScript</p>
+            <a href="#contact">Project Enquiry</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <textarea
+            id="userMessage"
+            placeholder="Enter your message"
+            rows="5"
+            required
+        ></textarea>
+
+        <button type="submit" class="btn">
+            Send Message
+        </button>
+
+        <p id="message"></p>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Student Portfolio | Created with HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+
+// Project Filtering
+function filterProjects(category, button) {
+    const projects = document.querySelectorAll(".project");
+    const buttons = document.querySelectorAll(".filters button");
+
+    buttons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    projects.forEach(project => {
+        if (
+            category === "all" ||
+            project.dataset.category === category
+        ) {
+            project.style.display = "block";
+        } else {
+            project.style.display = "none";
+        }
+    });
+}
+
+// Download Resume
+function downloadResume() {
+    const resume = `
+STUDENT RESUME
+
+Name: Student Name
+Email: student@example.com
+
+CAREER OBJECTIVE
+To learn new technologies and develop my technical skills.
+
+EDUCATION
+Bachelor's Degree - ABC College
+
+TECHNICAL SKILLS
+HTML, CSS, JavaScript, C++, Java, Python
+
+PROJECTS
+1. College Transport Portal
+2. Online Quiz Application
+3. Student Portfolio Website
+
+DECLARATION
+I declare that the above information is true.
+`;
+
+    const blob = new Blob([resume], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Student_Resume.txt";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+}
+
+// Contact Form Validation
+document.getElementById("contactForm").addEventListener(
+    "submit",
+    function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const userMessage =
+            document.getElementById("userMessage").value.trim();
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (name === "" || email === "" || userMessage === "") {
+            document.getElementById("message").textContent =
+                "Please fill in all fields.";
+            return;
+        }
+
+        if (!emailPattern.test(email)) {
+            document.getElementById("message").textContent =
+                "Please enter a valid email address.";
+            return;
+        }
+
+        document.getElementById("message").textContent =
+            "Form validated successfully! Note: This demo does not send messages.";
+
+        this.reset();
+    }
+);
+
+</script>
+
+</body>
+</html>
